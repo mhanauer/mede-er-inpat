@@ -49,23 +49,39 @@ df['readmissions_category'] = df['predicted_readmissions'].apply(categorize_read
 # Streamlit app
 st.title('Healthcare Claimants Analysis')
 
-st.header('Filter Data')
+# Section 1: Chronic Conditions and ER Visits
+st.header('Filter Data: Chronic Conditions and ER Visits')
 
 # Selectors for chronic conditions
-chronic_condition_filter = st.multiselect('Select Chronic Conditions', options=chronic_conditions, default=chronic_conditions)
-filtered_df = df[df['chronic_condition'].isin(chronic_condition_filter)]
+chronic_condition_filter_1 = st.multiselect('Select Chronic Conditions', options=chronic_conditions, default=chronic_conditions)
+filtered_df_1 = df[df['chronic_condition'].isin(chronic_condition_filter_1)]
 
 # Selectors for ER visit categories
 er_visits_categories = ['Unavoidable ER', 'Impactable ER', 'Unlikely ER']
 er_visits_category_filter = st.multiselect('Select ER Visit Categories', options=er_visits_categories, default=er_visits_categories)
-filtered_df = filtered_df[filtered_df['er_visits_category'].isin(er_visits_category_filter)]
+filtered_df_1 = filtered_df_1[filtered_df_1['er_visits_category'].isin(er_visits_category_filter)]
+
+# Display the filtered dataframe for Section 1
+st.subheader('Filtered Dataframe: Chronic Conditions and ER Visits')
+st.dataframe(filtered_df_1)
+
+# Section 2: Chronic Conditions and Readmissions
+st.header('Filter Data: Chronic Conditions and Readmissions')
+
+# Selectors for chronic conditions
+chronic_condition_filter_2 = st.multiselect('Select Chronic Conditions', options=chronic_conditions, default=chronic_conditions, key='readmissions')
+filtered_df_2 = df[df['chronic_condition'].isin(chronic_condition_filter_2)]
 
 # Selectors for readmissions categories
 readmissions_categories = ['Unavoidable Re-admissions', 'Impactable Re-admissions', 'Unlikely Re-admissions']
-readmissions_category_filter = st.multiselect('Select Readmissions Categories', options=readmissions_categories, default=readmissions_categories)
-filtered_df = filtered_df[filtered_df['readmissions_category'].isin(readmissions_category_filter)]
+readmissions_category_filter = st.multiselect('Select Readmissions Categories', options=readmissions_categories, default=readmissions_categories, key='readmissions_category')
+filtered_df_2 = filtered_df_2[filtered_df_2['readmissions_category'].isin(readmissions_category_filter)]
 
-st.dataframe(filtered_df)
+# Display the filtered dataframe for Section 2
+st.subheader('Filtered Dataframe: Chronic Conditions and Readmissions')
+st.dataframe(filtered_df_2)
 
-
-
+if __name__ == '__main__':
+    st.set_option('deprecation.showfileUploaderEncoding', False)
+    st.sidebar.header('About')
+    st.sidebar.info('This app is created to analyze healthcare claimants data.')
