@@ -70,7 +70,7 @@ st.subheader('Chronic Conditions and ER Visits')
 st.dataframe(filtered_df_1)
 
 # Section 2: Chronic Conditions and Readmissions
-st.header('Filter Data: Chronic Conditions and Readmissions')
+st.header('Chronic Conditions and Readmissions')
 
 # Selectors for chronic conditions
 chronic_condition_filter_2 = st.multiselect('Select Chronic Conditions', options=chronic_conditions, default=chronic_conditions, key='readmissions')
