@@ -81,7 +81,3 @@ filtered_df_2 = filtered_df_2[filtered_df_2['readmissions_category'].isin(readmi
 st.subheader('Filtered Dataframe: Chronic Conditions and Readmissions')
 st.dataframe(filtered_df_2)
 
-if __name__ == '__main__':
-    st.set_option('deprecation.showfileUploaderEncoding', False)
-    st.sidebar.header('About')
-    st.sidebar.info('This app is created to analyze healthcare claimants data.')
