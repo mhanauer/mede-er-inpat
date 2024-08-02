@@ -26,19 +26,23 @@ np.random.seed(42)  # For reproducibility
 df['predicted_er_visits'] = np.random.uniform(0, 100, size=100)
 df['predicted_readmissions'] = np.random.uniform(0, 100, size=100)
 
+# Convert predictions to percentages
+df['predicted_er_visits'] = df['predicted_er_visits'] / 100
+df['predicted_readmissions'] = df['predicted_readmissions'] / 100
+
 # Define criteria for categorizing ER visits and Re-admissions
 def categorize_er_visits(pred):
-    if pred >= 75:
+    if pred >= 0.75:
         return 'Unavoidable ER'
-    elif pred >= 35:
+    elif pred >= 0.35:
         return 'Impactable ER'
     else:
         return 'Unlikely ER'
 
 def categorize_readmissions(pred):
-    if pred >= 75:
+    if pred >= 0.75:
         return 'Unavoidable Re-admissions'
-    elif pred >= 35:
+    elif pred >= 0.35:
         return 'Impactable Re-admissions'
     else:
         return 'Unlikely Re-admissions'
@@ -62,7 +66,7 @@ er_visits_category_filter = st.multiselect('Select ER Visit Categories', options
 filtered_df_1 = filtered_df_1[filtered_df_1['er_visits_category'].isin(er_visits_category_filter)]
 
 # Display the filtered dataframe for Section 1
-st.subheader('Filtered Dataframe: Chronic Conditions and ER Visits')
+st.subheader('Chronic Conditions and ER Visits')
 st.dataframe(filtered_df_1)
 
 # Section 2: Chronic Conditions and Readmissions
@@ -78,6 +82,6 @@ readmissions_category_filter = st.multiselect('Select Readmissions Categories', 
 filtered_df_2 = filtered_df_2[filtered_df_2['readmissions_category'].isin(readmissions_category_filter)]
 
 # Display the filtered dataframe for Section 2
-st.subheader('Filtered Dataframe: Chronic Conditions and Readmissions')
+st.subheader('Chronic Conditions and Readmissions')
 st.dataframe(filtered_df_2)
 
