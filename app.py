@@ -51,10 +51,10 @@ df['er_visits_category'] = df['predicted_er_visits'].apply(categorize_er_visits)
 df['readmissions_category'] = df['predicted_readmissions'].apply(categorize_readmissions)
 
 # Streamlit app
-st.title('Healthcare Claimants Analysis')
+st.title('ER and Re-admissons predictions')
 
 # Section 1: Chronic Conditions and ER Visits
-st.header('Filter Data: Chronic Conditions and ER Visits')
+st.header('Chronic Conditions and ER Visits')
 
 # Selectors for chronic conditions
 chronic_condition_filter_1 = st.multiselect('Select Chronic Conditions', options=chronic_conditions, default=chronic_conditions)
