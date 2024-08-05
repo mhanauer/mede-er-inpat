@@ -53,6 +53,16 @@ df['readmissions_category'] = df['predicted_readmissions'].apply(categorize_read
 # Streamlit app
 st.title('ER and Re-admissons predictions')
 
+st.markdown("""
+
+Unavoidable Re-admissions / ER Visit: If the prediction score is 0.75 or higher, the readmission / ER Visit is considered unavoidable.
+
+Impactable Re-admissions / ER Visit: If the prediction score is between 0.35 and 0.75 the readmission / ER Visit is considered potentially impactable, meaning there may be opportunities to intervene and reduce the risk.
+
+Unlikely Re-admissions: If the prediction score is below 0.35, the readmission / er visit is considered unlikely to occur.
+
+ """)
+
 # Section 1: Chronic Conditions and ER Visits
 st.header('Chronic Conditions and ER Visits')
 
