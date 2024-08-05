@@ -27,8 +27,8 @@ df['predicted_er_visits'] = np.random.uniform(0, 100, size=100)
 df['predicted_readmissions'] = np.random.uniform(0, 100, size=100)
 
 # Convert predictions to percentages
-df['predicted_er_visits'] = df['predicted_er_visits'] / 100
-df['predicted_readmissions'] = df['predicted_readmissions'] / 100
+df['predicted_er_visits'] = round(df['predicted_er_visits'] / 100, 2)
+df['predicted_readmissions'] = round(df['predicted_readmissions'] / 100, 2)
 
 # Define criteria for categorizing ER visits and Re-admissions
 def categorize_er_visits(pred):
